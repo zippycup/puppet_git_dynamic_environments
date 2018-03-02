@@ -166,7 +166,7 @@ ssh root@[target_server]
 puppet agent -t
 ```
 ###   Merge branch to master and push to origin
-When you are completely satisfy with the work on the branch and testing is finalized, merge the branch to master
+When you are completely satisfied with the work on the branch and testing is finalized, merge the branch to master
 ```
 git checkout master
 git pull -a
