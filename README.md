@@ -127,7 +127,7 @@ sh -x /usr/local/bin/create_env.sh
 * Clean up the dynamic environment by removing the git branch
 
 ### git clone on your local machine
-``
+```
 git clone [url_to_your_puppet_git_repo]
 ```
 
