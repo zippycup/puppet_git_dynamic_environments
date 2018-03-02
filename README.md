@@ -119,14 +119,13 @@ sh -x /usr/local/bin/create_env.sh
 
 ## Workflow
 ### Overview
-* Create a branch
-* Edit code
+* Create a branch and edit your code
 * Check in and push branch
 * Run puppet agent on target server
 * Merge branch to master and push to origin
 * Clean up the dynamic environment by removing the git branch
 
-### Create a branch
+### Create a branch and edit your code
 Only work on **environments/production**
 ```
 git pull
@@ -145,7 +144,7 @@ Note: DO NOT add these directories 'Untracked files'. only environments/producti
 # environments/test2
 # environments/xxxxx
 ```
-### Check in code
+### Check in and push branch
 ```
 git status
 git add [file / directories] # DO NOT ADD environments/xxxx
@@ -154,7 +153,8 @@ git commit --author="Name <email>" -m "[ticket] comment"
 git push origin [your_branch_name]
 ```
 ### Run puppet agent on target server
-Depending on how you implemented create_env.sh. This needs to be run to update the puppet master
+Depending on how you implemented create_env.sh. This needs to be run to update the puppet master.
+Once the puppet master has the update, then run the puppet client.
 ```
 ssh root@[target_server]
 puppet agent -t
