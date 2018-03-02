@@ -11,8 +11,8 @@ This runs on the puppet server.
 ssh keys already setup to all access to your git puppet repository.
 
 your git puppet repository directory structure is
-/environments
-/modules
+* /environments
+* /modules
 
 You are git cloning to /etc/puppetlabs/code
 e.g. git clone [your_git_repository] /etc/puppetlabs/code
