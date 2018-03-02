@@ -119,11 +119,17 @@ sh -x /usr/local/bin/create_env.sh
 
 ## Workflow
 ### Overview
+* git clone on your local machine
 * Create a branch and edit your code
 * Check in and push branch
 * Run puppet agent on target server
 * Merge branch to master and push to origin
 * Clean up the dynamic environment by removing the git branch
+
+### git clone on your local machine
+``
+git clone [url_to_your_puppet_git_repo]
+```
 
 ### Create a branch and edit your code
 Only work on **environments/production**
