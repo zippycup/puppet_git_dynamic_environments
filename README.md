@@ -116,3 +116,64 @@ done
 sh -x /usr/local/bin/create_env.sh
 ```
 * Periodically run this script via crontab , puppet agent -t, or git hook
+
+## Workflow
+### Overview
+* Create a branch
+* Edit code
+* Check in and push branch
+* Run puppet agent on target server
+* Merge branch to master and push to origin
+* Clean up the dynamic environment by removing the git branch
+
+### Create a branch
+Only work on **environments/production**
+```
+git pull
+git branch [your_branch_name]
+git checkout [your_branch_name]
+cd environments/production
+# Edit your code
+```
+Note: DO NOT add these directories 'Untracked files'. only environments/production**
+```
+# On branch master
+# Untracked files:
+# (use` `"git add <file>..."`  `to include in what will be committed)
+#
+# environments/test1
+# environments/test2
+# environments/xxxxx
+```
+### Check in code
+```
+git status
+git add [file / directories] # DO NOT ADD environments/xxxx
+git status
+git commit --author="Name <email>" -m "[ticket] comment"
+git push origin [your_branch_name]
+```
+### Run puppet agent on target server
+Depending on how you implemented create_env.sh. This needs to be run to update the puppet master
+```
+ssh root@[target_server]
+puppet agent -t
+```
+###   Merge branch to master and push to origin
+When you are completed satisfy with the work on the branch and testing is finalized, merge the branch to master
+```
+git checkout master
+git pull -a
+git checkout [your_branch_name]
+git merge master
+git checkout master
+git merge --squash [your_branch_name]
+git push origin master
+```
+### Clean up the dynamic environment by removing the git branch
+```
+git branch -D [your_branch_name]
+git push origin :[your_branch_name]
+git remote prune origin
+```
+Note: Next run of create_env.sh will remove the branch from the puppet server.
